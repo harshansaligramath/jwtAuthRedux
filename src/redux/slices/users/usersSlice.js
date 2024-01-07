@@ -44,62 +44,6 @@ export const registerUserAction = createAsyncThunk(
   }
 );
 
-//update user shipping address action
-export const updateUserShippingAddressAction = createAsyncThunk(
-  "users/update-shipping-address",
-  async (
-    {
-      firstName,
-      lastName,
-      address,
-      city,
-      postalCode,
-      province,
-      phone,
-      country,
-    },
-    { rejectWithValue, getState, dispatch }
-  ) => {
-    console.log(
-      firstName,
-      lastName,
-      address,
-      city,
-      postalCode,
-      province,
-      phone,
-      country
-    );
-    try {
-      //get token
-      const token = getState()?.users?.userAuth?.userInfo?.token;
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const { data } = await axios.put(
-        `${baseURL}/users/update/shipping`,
-        {
-          firstName,
-          lastName,
-          address,
-          city,
-          postalCode,
-          province,
-          phone,
-          country,
-        },
-        config
-      );
-      return data;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue(error?.response?.data);
-    }
-  }
-);
-
 //user profile action
 export const getUserProfileAction = createAsyncThunk(
   "users/profile-fetched",
@@ -198,27 +142,6 @@ const usersSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     });
-    //shipping address
-    builder.addCase(
-      updateUserShippingAddressAction.pending,
-      (state, action) => {
-        state.loading = true;
-      }
-    );
-    builder.addCase(
-      updateUserShippingAddressAction.fulfilled,
-      (state, action) => {
-        state.user = action.payload;
-        state.loading = false;
-      }
-    );
-    builder.addCase(
-      updateUserShippingAddressAction.rejected,
-      (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      }
-    );
     //reset error action
     builder.addCase(resetErrAction.pending, (state) => {
       state.error = null;

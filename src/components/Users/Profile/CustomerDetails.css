@@ -1,0 +1,41 @@
+/* styles.css */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 0;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.75;
+    color: #1a202c; /* Change this color as needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .subInfo {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .subInfoItem {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #718096; /* Change this color as needed */
+  }
+  
+  .subInfoItem svg {
+    margin-right: 0.375rem;
+    flex-shrink: 0;
+    height: 1.25rem;
+    width: 1.25rem;
+    stroke-width: 1.5;
+    stroke: #718096; /* Change this color as needed */
+  }
+  

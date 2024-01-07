@@ -4,6 +4,8 @@ import { registerUserAction } from "../../../redux/slices/users/usersSlice";
 import ErrorMsg from "../../ErrorMsg/ErrorMsg";
 import LoadingComponent from "../../LoadingComp/LoadingComponent";
 
+import "./RegistrationForm.css"
+
 const RegisterForm = () => {
   //dispatch
   const dispatch = useDispatch();
@@ -35,23 +37,20 @@ const RegisterForm = () => {
   }, [user]);
   return (
     <>
-      <section className="relative overflow-x-hidden">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-wrap items-center">
-            <div className="w-full lg:w-2/6 px-4 mb-12 lg:mb-0">
-              <div className="py-20 text-center">
-                <h3 className="mb-8 text-4xl md:text-5xl font-bold font-heading">
-                  Signing up with social is super quick
-                </h3>
-                {/* errr */}
+      {/* <section>
+        <div>
+          <div>
+            <div>
+              <div>
+                <h3>Signing up with social is super quick</h3>
+            
                 {error && <ErrorMsg message={error?.message} />}
-                <p className="mb-10">Please, do not hesitate</p>
+                <p>Please, do not hesitate</p>
                 <form onSubmit={onSubmitHandler}>
                   <input
                     name="fullname"
                     value={fullname}
                     onChange={onChangeHandler}
-                    className="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="text"
                     placeholder="Full Name"
                   />
@@ -59,7 +58,6 @@ const RegisterForm = () => {
                     name="email"
                     value={email}
                     onChange={onChangeHandler}
-                    className="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="email"
                     placeholder="Enter your email"
                   />
@@ -67,23 +65,52 @@ const RegisterForm = () => {
                     name="password"
                     value={password}
                     onChange={onChangeHandler}
-                    className="w-full mb-4 px-12 py-6 border border-gray-200 focus:ring-blue-300 focus:border-blue-300 rounded-md"
                     type="password"
                     placeholder="Enter your password"
                   />
-                  {loading ? (
-                    <LoadingComponent />
-                  ) : (
-                    <button className="mt-12 md:mt-16 bg-blue-800 hover:bg-blue-900 text-white font-bold font-heading py-5 px-8 rounded-md uppercase">
-                      Register
-                    </button>
-                  )}
+                  {loading ? <LoadingComponent /> : <button>Register</button>}
                 </form>
               </div>
             </div>
           </div>
         </div>
-       
+      </section> */}
+       <section className="section-container">
+        <div className="form-container">
+          <div className="title-container">
+            <h3>Signing up with social is super quick</h3>
+            {error && <ErrorMsg message={error?.message} />}
+            <p>Please, do not hesitate</p>
+          </div>
+
+          <form onSubmit={onSubmitHandler}>
+            <input
+              className="input-field"
+              name="fullname"
+              value={fullname}
+              onChange={onChangeHandler}
+              type="text"
+              placeholder="Full Name"
+            />
+            <input
+              className="input-field"
+              name="email"
+              value={email}
+              onChange={onChangeHandler}
+              type="email"
+              placeholder="Enter your email"
+            />
+            <input
+              className="input-field"
+              name="password"
+              value={password}
+              onChange={onChangeHandler}
+              type="password"
+              placeholder="Enter your password"
+            />
+            {loading ? <LoadingComponent /> : <button className="submit-button">Register</button>}
+          </form>
+        </div>
       </section>
     </>
   );
